@@ -90,39 +90,69 @@ namespace CourseWork_Poliukhovych
                     string centreCount = textBoxAddCentreTickets.Text;
                     string backCount = textBoxAddBackTickets.Text;
 
-                    Perfomance temp = new Perfomance()
+                    int val = 0;
+                    for (int i = 0; i < Boxes.Count; i++)
                     {
-                        Name = name,
-                        Author = author,
-                        Genre = genre,
-                        Date = date,
-                        Tickets = new List<Ticket>()
-                    };
+                        if (Boxes[i].Text == frontCost)
+                        {
+                            val = i;
+                        }
+                    }
+                    bool Yes = false;
+                    for ( ; val < Boxes.Count; val++)
+                    {
+                        if (Convert.ToInt32(Boxes[val].Text) < 0)
+                        {
+                            Yes = true;
+                        }
+                    }
 
-                    Ticket front = new Ticket(Convert.ToInt32(frontCount), Convert.ToInt32(frontCost), "front");
-                    Ticket centre = new Ticket(Convert.ToInt32(centreCount), Convert.ToInt32(centreCost), "centre");
-                    Ticket back = new Ticket(Convert.ToInt32(backCount), Convert.ToInt32(backCost), "back");
-                    temp.Tickets.Add(front);
-                    temp.Tickets.Add(centre);
-                    temp.Tickets.Add(back);
+                    if (Yes)
+                    {
+                        MessageBox.Show(
+                            "Incorrect data\nPlease fill again",
+                            "Warning",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning,
+                            MessageBoxDefaultButton.Button1,
+                            MessageBoxOptions.DefaultDesktopOnly);
+                    }
+                    else
+                    {
+                        Perfomance temp = new Perfomance()
+                        {
+                            Name = name,
+                            Author = author,
+                            Genre = genre,
+                            Date = date,
+                            Tickets = new List<Ticket>()
+                        };
 
-                    admin.Added += ActionAdmin;
-                    admin.AddPerfomance(Poster, temp);
-                    admin.ViewInformation(temp);
+                        Ticket front = new Ticket(Convert.ToInt32(frontCount), Convert.ToInt32(frontCost), "front");
+                        Ticket centre = new Ticket(Convert.ToInt32(centreCount), Convert.ToInt32(centreCost), "centre");
+                        Ticket back = new Ticket(Convert.ToInt32(backCount), Convert.ToInt32(backCost), "back");
+                        temp.Tickets.Add(front);
+                        temp.Tickets.Add(centre);
+                        temp.Tickets.Add(back);
+
+                        admin.Added += ActionAdmin;
+                        admin.AddPerfomance(Poster, temp);
+                        admin.ViewInformation(temp);
+
+                        textBoxAddName.Text = "";
+                        textBoxAddAuthor.Text = "";
+                        textBoxAddGenre.Text = "";
+                        textBoxAddMonth.Text = "";
+                        textBoxAddDay.Text = "";
+                        textBoxAddHour.Text = "";
+                        textBoxAddFrontCost.Text = "";
+                        textBoxAddCentreCost.Text = "";
+                        textBoxAddBackCost.Text = "";
+                        textBoxAddFrontTickets.Text = "";
+                        textBoxAddCentreTickets.Text = "";
+                        textBoxAddBackTickets.Text = "";
+                    }
                 }
-
-                textBoxAddName.Text = "";
-                textBoxAddAuthor.Text = "";
-                textBoxAddGenre.Text = "";
-                textBoxAddMonth.Text = "";
-                textBoxAddDay.Text = "";
-                textBoxAddHour.Text = "";
-                textBoxAddFrontCost.Text = "";
-                textBoxAddCentreCost.Text = "";
-                textBoxAddBackCost.Text = "";
-                textBoxAddFrontTickets.Text = "";
-                textBoxAddCentreTickets.Text = "";
-                textBoxAddBackTickets.Text = "";
             }
         }
 

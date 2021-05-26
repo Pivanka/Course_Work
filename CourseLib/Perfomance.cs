@@ -10,7 +10,7 @@ namespace CourseLib
         public string Date { get; set; }
         public List<Ticket> Tickets { get; set; }
         public int AmountSold { get; set; }
-        public string[] Info() // ???
+        public string[] Info()
         {
             string[] result = { Name, Author, Genre };
             return result;
