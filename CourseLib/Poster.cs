@@ -4,7 +4,7 @@ namespace CourseLib
 {
     public class Poster
     {
-        public List<Perfomance> _poster = new List<Perfomance>();
+        private List<Perfomance> _poster = new List<Perfomance>();
 
         /// <summary>
         /// The method add a perfomance to the poster
@@ -80,10 +80,7 @@ namespace CourseLib
 
             for (int i = 0; i < _poster.Count; i++)
             {
-                int pos = _poster[i].Date.LastIndexOf(' ');
-                string temp = _poster[i].Date.Substring(0, pos);
-
-                if (temp == datekey)
+                if (_poster[i].Date.Contains(datekey))
                 {
                     result.Add(_poster[i]);
                 }
