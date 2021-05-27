@@ -72,7 +72,7 @@ namespace CourseWork_Poliukhovych
 
         private void ButtonOk_Click(object sender, EventArgs e)
         {
-            if (textBoxEnter.Text == "")
+            if (textBoxEnter.Text == "" && Convert.ToInt32(textBoxEnter.Text) <= 0)
             {
                 MessageBox.Show(
                 $"Input amount of tickets",
@@ -159,6 +159,13 @@ namespace CourseWork_Poliukhovych
                 textBoxEnter.Text = "";
                 checkBoxBuy.Checked = default;
                 checkBoxBook.Checked = default;
+                for (int i = 0; i < Perfomance.Tickets.Count; i++)
+                {
+                    if (Perfomance.Tickets[i].Place == _place)
+                    {
+                        label6.Text = $"Available number of tickets near the {_place} is {Perfomance.Tickets[i].Count} - {Perfomance.Tickets[i].Cost} UAN";
+                    }
+                }
             }
         }
 

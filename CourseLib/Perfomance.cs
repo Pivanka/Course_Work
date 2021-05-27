@@ -10,6 +10,10 @@ namespace CourseLib
         public string Date { get; set; }
         public List<Ticket> Tickets { get; set; }
         public int AmountSold { get; set; }
+
+        /// <summary>
+        /// The method return in array all paramaters for search
+        /// </summary>
         public string[] Info()
         {
             string[] result = { Name, Author, Genre };
